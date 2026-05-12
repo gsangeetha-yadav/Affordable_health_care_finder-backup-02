@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Affordable Healthcare Finder</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      transition: 0.3s;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-sky-100 via-white to-green-100">
+
+  <!-- NAVBAR -->
+
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+      <h1 class="text-3xl font-bold text-sky-700">
+        🏥 Healthcare Finder
+      </h1>
+
+      <div class="hidden md:flex gap-6 font-semibold text-gray-700">
+
+        <a href="#home" class="hover:text-sky-600">Home</a>
+
+        <a href="#hospitals" class="hover:text-sky-600">Hospitals</a>
+
+        <a href="#doctors" class="hover:text-sky-600">Doctors</a>
+
+        <a href="#medicine" class="hover:text-sky-600">Medicine</a>
+
+        <a href="#emergency" class="hover:text-sky-600">Emergency</a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section id="home" class="py-20 px-6 text-center">
+
+    <h2 class="text-5xl font-bold text-sky-700">
+      Affordable Healthcare Finder 🩺
+    </h2>
+
+    <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+      Find hospitals, doctors, medicines, emergency support,
+      and healthcare services near your location instantly.
+    </p>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+
+      <button
+        onclick="getLocation()"
+        class="bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
+
+        📍 Detect My Location
+
+      </button>
+
+      <button
+        onclick="voiceSupport()"
+        class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
+
+        🎤 Voice Support
+
+      </button>
+
+    </div>
+
+    <p id="locationText" class="mt-6 text-xl font-semibold text-green-700"></p>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="px-8 py-10">
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
+        <h3 class="text-2xl font-bold text-sky-700 mb-4">
+          📍 Nearby Hospitals
+        </h3>
+
+        <p class="text-gray-600">
+          Track user location and suggest nearby hospitals.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
+        <h3 class="text-2xl font-bold text-sky-700 mb-4">
+          👨‍⚕️ Doctor Availability
+        </h3>
+
+        <p class="text-gray-600">
+          Check doctor timings and availability instantly.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
+        <h3 class="text-2xl font-bold text-sky-700 mb-4">
+          🚑 Emergency Support
+        </h3>
+
+        <p class="text-gray-600">
+          One click emergency and ambulance support.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- HOSPITALS -->
+
+  <section id="hospitals" class="py-20 px-8">
+
+    <h2 class="text-4xl font-bold text-center text-sky-700 mb-14">
+      🏥 Suggested Hospitals
+    </h2>
+
+    <div id="hospitalContainer"
+      class="grid md:grid-cols-3 gap-8">
+
+    </div>
+
+  </section>
+
+  <!-- DOCTORS -->
+
+  <section id="doctors" class="bg-white py-20 px-8">
+
+    <h2 class="text-4xl font-bold text-center text-sky-700 mb-14">
+      👨‍⚕️ Available Doctors
+    </h2>
+
+    <div id="doctorContainer"
+      class="grid md:grid-cols-2 gap-8">
+
+    </div>
+
+  </section>
+
+  <!-- MEDICINE -->
+
+  <section id="medicine" class="py-20 px-8">
+
+    <h2 class="text-4xl font-bold text-center text-sky-700 mb-14">
+      💊 Medicine Availability
+    </h2>
+
+    <div class="bg-white max-w-3xl mx-auto p-10 rounded-3xl shadow-2xl text-center">
+
+      <input
+        type="text"
+        id="medicineInput"
+        placeholder="Search Medicine..."
+        class="w-full px-5 py-4 rounded-2xl border border-sky-300">
+
+      <button
+        onclick="checkMedicine()"
+        class="mt-6 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
+
+        Check Availability
+
+      </button>
+
+      <p id="medicineResult"
+        class="mt-6 text-xl text-green-700 font-semibold"></p>
+
+    </div>
+
+  </section>
+
+  <!-- EMERGENCY -->
+
+  <section id="emergency" class="py-20 px-8">
+
+    <div class="bg-red-500 text-white rounded-3xl p-12 text-center shadow-2xl">
+
+      <h2 class="text-5xl font-bold">
+        🚑 Emergency Support
+      </h2>
+
+      <p class="mt-6 text-lg">
+        Emergency healthcare services available 24/7.
+      </p>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-5">
+
+        <button
+          onclick="ambulanceCall()"
+          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
+
+          Ambulance
+
+        </button>
+
+        <button
+          onclick="emergencyCall()"
+          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
+
+          Emergency Call
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="bg-sky-700 text-white py-10 text-center">
+
+    <h2 class="text-3xl font-bold">
+      Affordable Healthcare Finder
+    </h2>
+
+    <p class="mt-4 text-sky-100">
+      Healthcare access for everyone 🌍
+    </p>
+
+    <div class="mt-6 flex justify-center flex-wrap gap-6 text-sm">
+
+      <p>📞 1800-000-111</p>
+
+      <p>✉ support@healthfinder.com</p>
+
+      <p>🌐 English | ಕನ್ನಡ | हिंदी</p>
+
+    </div>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    const hospitals = {
+      Bangalore: [
+        {
+          name: "CityCare Hospital",
+          rating: "4.8",
+          time: "24/7",
+          fee: "₹500"
+        },
+        {
+          name: "Apollo Hospital",
+          rating: "4.7",
+          time: "24/7",
+          fee: "₹700"
+        }
+      ],
+
+      Mysore: [
+        {
+          name: "GreenLife Medical",
+          rating: "4.5",
+          time: "8 AM - 10 PM",
+          fee: "₹350"
+        }
+      ]
+    };
+
+    const doctors = {
+      Bangalore: [
+        {
+          name: "Dr. Priya Sharma",
+          specialization: "Cardiologist",
+          timing: "10 AM - 5 PM"
+        },
+        {
+          name: "Dr. Rahul Verma",
+          specialization: "Neurologist",
+          timing: "9 AM - 2 PM"
+        }
+      ],
+
+      Mysore: [
+        {
+          name: "Dr. Kavya Rao",
+          specialization: "Dermatologist",
+          timing: "11 AM - 4 PM"
+        }
+      ]
+    };
+
+    function getLocation() {
+
+      if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+      } else {
+
+        alert("Geolocation is not supported.");
+
+      }
+
+    }
+
+    function showPosition(position) {
+
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      let city = "Bangalore";
+
+      if (latitude > 12 && longitude > 76) {
+        city = "Bangalore";
+      } else {
+        city = "Mysore";
+      }
+
+      document.getElementById("locationText").innerHTML =
+        "📍 Location Detected: " + city;
+
+      showHospitals(city);
+      showDoctors(city);
+
+    }
+
+    function showHospitals(city) {
+
+      const container = document.getElementById("hospitalContainer");
+
+      container.innerHTML = "";
+
+      hospitals[city].forEach(hospital => {
+
+        container.innerHTML += `
+
+          <div class="bg-white rounded-3xl p-6 shadow-2xl card">
+
+            <div class="flex justify-between items-center">
+
+              <h3 class="text-2xl font-bold text-green-600">
+                ${hospital.name}
+              </h3>
+
+              <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+                ⭐ ${hospital.rating}
+              </span>
+
+            </div>
+
+            <p class="mt-4 text-gray-600">
+              📍 ${city}
+            </p>
+
+            <p class="mt-2 text-gray-600">
+              🕒 ${hospital.time}
+            </p>
+
+            <p class="mt-2 text-gray-600">
+              💰 ${hospital.fee}
+            </p>
+
+            <div class="mt-6 flex gap-3">
+
+              <button
+                onclick="bookAppointment()"
+                class="bg-sky-600 hover:bg-sky-700 text-white w-full py-2 rounded-xl">
+
+                Book
+
+              </button>
+
+              <button
+                onclick="callSupport()"
+                class="bg-green-500 hover:bg-green-600 text-white w-full py-2 rounded-xl">
+
+                Call
+
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+    function showDoctors(city) {
+
+      const container = document.getElementById("doctorContainer");
+
+      container.innerHTML = "";
+
+      doctors[city].forEach(doctor => {
+
+        container.innerHTML += `
+
+          <div class="bg-sky-50 rounded-3xl p-8 shadow-xl card">
+
+            <h3 class="text-2xl font-bold text-sky-700">
+              ${doctor.name}
+            </h3>
+
+            <p class="mt-3 text-gray-600">
+              ${doctor.specialization}
+            </p>
+
+            <p class="mt-2 text-gray-600">
+              Available: ${doctor.timing}
+            </p>
+
+            <p class="mt-2 text-green-600 font-semibold">
+              Available Today
+            </p>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+    function voiceSupport() {
+
+      const speech = new SpeechSynthesisUtterance(
+        "Welcome to Affordable Healthcare Finder"
+      );
+
+      speech.lang = "en-US";
+
+      window.speechSynthesis.speak(speech);
+
+    }
+
+    function bookAppointment() {
+
+      alert("📅 Appointment Booked Successfully");
+
+    }
+
+    function callSupport() {
+
+      window.location.href = "tel:1800000111";
+
+    }
+
+    function ambulanceCall() {
+
+      alert("🚑 Ambulance Contacted");
+
+    }
+
+    function emergencyCall() {
+
+      window.location.href = "tel:108";
+
+    }
+
+    function checkMedicine() {
+
+      const medicine =
+        document.getElementById("medicineInput").value;
+
+      document.getElementById("medicineResult").innerHTML =
+        "✅ " + medicine + " is available nearby.";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
