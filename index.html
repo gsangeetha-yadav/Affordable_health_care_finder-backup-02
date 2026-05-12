@@ -20,9 +20,10 @@
       transition: 0.3s;
     }
   </style>
+
 </head>
 
-<body class="bg-gradient-to-br from-sky-100 via-white to-green-100">
+<body class="bg-gradient-to-br from-blue-100 via-white to-green-100 text-gray-800">
 
   <!-- NAVBAR -->
 
@@ -30,21 +31,19 @@
 
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-      <h1 class="text-3xl font-bold text-sky-700">
+      <h1 class="text-3xl font-bold text-blue-700">
         🏥 Healthcare Finder
       </h1>
 
-      <div class="hidden md:flex gap-6 font-semibold text-gray-700">
+      <div class="hidden md:flex gap-6 font-semibold">
 
-        <a href="#home" class="hover:text-sky-600">Home</a>
+        <a href="#home" class="hover:text-blue-600">Home</a>
 
-        <a href="#hospitals" class="hover:text-sky-600">Hospitals</a>
+        <a href="#features" class="hover:text-blue-600">Features</a>
 
-        <a href="#doctors" class="hover:text-sky-600">Doctors</a>
+        <a href="#medicine" class="hover:text-blue-600">Medicine</a>
 
-        <a href="#medicine" class="hover:text-sky-600">Medicine</a>
-
-        <a href="#emergency" class="hover:text-sky-600">Emergency</a>
+        <a href="#emergency" class="hover:text-blue-600">Emergency</a>
 
       </div>
 
@@ -54,30 +53,31 @@
 
   <!-- HERO -->
 
-  <section id="home" class="py-20 px-6 text-center">
+  <section id="home" class="text-center py-20 px-6">
 
-    <h2 class="text-5xl font-bold text-sky-700">
+    <h1 class="text-6xl font-bold text-blue-700">
       Affordable Healthcare Finder 🩺
-    </h2>
+    </h1>
 
-    <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-      Find hospitals, doctors, medicines, emergency support,
-      and healthcare services near your location instantly.
+    <p class="mt-6 text-xl text-gray-600 max-w-4xl mx-auto">
+
+      Find nearby hospitals, doctors, medicine availability,
+      emergency contacts, voice support and affordable healthcare
+      services instantly.
+
     </p>
 
     <div class="mt-10 flex flex-wrap justify-center gap-4">
 
-      <button
-        onclick="getLocation()"
-        class="bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
+      <button onclick="findHospitals()"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl shadow-xl font-semibold">
 
-        📍 Detect My Location
+        📍 Detect Nearby Hospitals
 
       </button>
 
-      <button
-        onclick="voiceSupport()"
-        class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
+      <button onclick="voiceSupport()"
+        class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl shadow-xl font-semibold">
 
         🎤 Voice Support
 
@@ -85,60 +85,88 @@
 
     </div>
 
-    <p id="locationText" class="mt-6 text-xl font-semibold text-green-700"></p>
+    <p id="locationText"
+      class="mt-8 text-2xl font-bold text-green-700"></p>
 
   </section>
 
   <!-- FEATURES -->
 
-  <section class="px-8 py-10">
+  <section id="features" class="py-16 px-8">
 
     <div class="grid md:grid-cols-3 gap-8">
 
       <div class="bg-white p-8 rounded-3xl shadow-xl card">
-        <h3 class="text-2xl font-bold text-sky-700 mb-4">
+
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">
           📍 Nearby Hospitals
-        </h3>
+        </h2>
 
         <p class="text-gray-600">
-          Track user location and suggest nearby hospitals.
+          Detects your current location and opens nearby real hospitals.
         </p>
+
       </div>
 
       <div class="bg-white p-8 rounded-3xl shadow-xl card">
-        <h3 class="text-2xl font-bold text-sky-700 mb-4">
+
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">
           👨‍⚕️ Doctor Availability
-        </h3>
+        </h2>
 
         <p class="text-gray-600">
-          Check doctor timings and availability instantly.
+          Check doctor availability and consultation details.
         </p>
+
       </div>
 
       <div class="bg-white p-8 rounded-3xl shadow-xl card">
-        <h3 class="text-2xl font-bold text-sky-700 mb-4">
-          🚑 Emergency Support
-        </h3>
+
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+          💰 Budget Filter
+        </h2>
 
         <p class="text-gray-600">
-          One click emergency and ambulance support.
+          Find affordable healthcare services nearby.
         </p>
+
       </div>
 
-    </div>
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
 
-  </section>
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+          💊 Medicine Availability
+        </h2>
 
-  <!-- HOSPITALS -->
+        <p class="text-gray-600">
+          Search medicines available near you.
+        </p>
 
-  <section id="hospitals" class="py-20 px-8">
+      </div>
 
-    <h2 class="text-4xl font-bold text-center text-sky-700 mb-14">
-      🏥 Suggested Hospitals
-    </h2>
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
 
-    <div id="hospitalContainer"
-      class="grid md:grid-cols-3 gap-8">
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+          🚑 Emergency Support
+        </h2>
+
+        <p class="text-gray-600">
+          One click ambulance and emergency support.
+        </p>
+
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
+
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+          ⭐ Ratings & Reviews
+        </h2>
+
+        <p class="text-gray-600">
+          View patient ratings and hospital reviews.
+        </p>
+
+      </div>
 
     </div>
 
@@ -146,14 +174,67 @@
 
   <!-- DOCTORS -->
 
-  <section id="doctors" class="bg-white py-20 px-8">
+  <section class="py-20 px-8 bg-white">
 
-    <h2 class="text-4xl font-bold text-center text-sky-700 mb-14">
+    <h2 class="text-5xl font-bold text-center text-blue-700 mb-14">
       👨‍⚕️ Available Doctors
     </h2>
 
-    <div id="doctorContainer"
-      class="grid md:grid-cols-2 gap-8">
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <div class="bg-blue-50 p-8 rounded-3xl shadow-xl card">
+
+        <h3 class="text-2xl font-bold text-blue-700">
+          Dr. Priya Sharma
+        </h3>
+
+        <p class="mt-3 text-gray-600">
+          Cardiologist
+        </p>
+
+        <p class="mt-2 text-gray-600">
+          Experience: 12 Years
+        </p>
+
+        <p class="mt-2 text-gray-600">
+          Available: 10 AM - 5 PM
+        </p>
+
+        <button onclick="bookAppointment()"
+          class="mt-5 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl">
+
+          Book Appointment
+
+        </button>
+
+      </div>
+
+      <div class="bg-green-50 p-8 rounded-3xl shadow-xl card">
+
+        <h3 class="text-2xl font-bold text-green-700">
+          Dr. Rahul Verma
+        </h3>
+
+        <p class="mt-3 text-gray-600">
+          Neurologist
+        </p>
+
+        <p class="mt-2 text-gray-600">
+          Experience: 8 Years
+        </p>
+
+        <p class="mt-2 text-gray-600">
+          Available: 9 AM - 2 PM
+        </p>
+
+        <button onclick="bookAppointment()"
+          class="mt-5 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-2xl">
+
+          Book Appointment
+
+        </button>
+
+      </div>
 
     </div>
 
@@ -163,20 +244,18 @@
 
   <section id="medicine" class="py-20 px-8">
 
-    <h2 class="text-4xl font-bold text-center text-sky-700 mb-14">
+    <h2 class="text-5xl font-bold text-center text-blue-700 mb-14">
       💊 Medicine Availability
     </h2>
 
     <div class="bg-white max-w-3xl mx-auto p-10 rounded-3xl shadow-2xl text-center">
 
-      <input
-        type="text"
+      <input type="text"
         id="medicineInput"
         placeholder="Search Medicine..."
-        class="w-full px-5 py-4 rounded-2xl border border-sky-300">
+        class="w-full px-5 py-4 rounded-2xl border border-blue-300">
 
-      <button
-        onclick="checkMedicine()"
+      <button onclick="checkMedicine()"
         class="mt-6 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
 
         Check Availability
@@ -184,7 +263,7 @@
       </button>
 
       <p id="medicineResult"
-        class="mt-6 text-xl text-green-700 font-semibold"></p>
+        class="mt-6 text-2xl font-bold text-green-700"></p>
 
     </div>
 
@@ -201,21 +280,21 @@
       </h2>
 
       <p class="mt-6 text-lg">
-        Emergency healthcare services available 24/7.
+
+        Ambulance and emergency healthcare support available 24/7.
+
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-5">
 
-        <button
-          onclick="ambulanceCall()"
+        <button onclick="callAmbulance()"
           class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
 
           Ambulance
 
         </button>
 
-        <button
-          onclick="emergencyCall()"
+        <button onclick="callEmergency()"
           class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
 
           Emergency Call
@@ -230,17 +309,17 @@
 
   <!-- FOOTER -->
 
-  <footer class="bg-sky-700 text-white py-10 text-center">
+  <footer class="bg-blue-700 text-white py-10 text-center">
 
     <h2 class="text-3xl font-bold">
       Affordable Healthcare Finder
     </h2>
 
-    <p class="mt-4 text-sky-100">
-      Healthcare access for everyone 🌍
+    <p class="mt-4 text-blue-100">
+      Affordable healthcare access for everyone 🌍
     </p>
 
-    <div class="mt-6 flex justify-center flex-wrap gap-6 text-sm">
+    <div class="mt-6 flex justify-center gap-6 flex-wrap text-sm">
 
       <p>📞 1800-000-111</p>
 
@@ -256,238 +335,25 @@
 
   <script>
 
-    const hospitals = {
-      Bangalore: [
-        {
-          name: "CityCare Hospital",
-          rating: "4.8",
-          time: "24/7",
-          fee: "₹500"
-        },
-        {
-          name: "Apollo Hospital",
-          rating: "4.7",
-          time: "24/7",
-          fee: "₹700"
-        }
-      ],
-
-      Mysore: [
-        {
-          name: "GreenLife Medical",
-          rating: "4.5",
-          time: "8 AM - 10 PM",
-          fee: "₹350"
-        }
-      ]
-    };
-
-    const doctors = {
-      Bangalore: [
-        {
-          name: "Dr. Priya Sharma",
-          specialization: "Cardiologist",
-          timing: "10 AM - 5 PM"
-        },
-        {
-          name: "Dr. Rahul Verma",
-          specialization: "Neurologist",
-          timing: "9 AM - 2 PM"
-        }
-      ],
-
-      Mysore: [
-        {
-          name: "Dr. Kavya Rao",
-          specialization: "Dermatologist",
-          timing: "11 AM - 4 PM"
-        }
-      ]
-    };
-
-    function getLocation() {
+    function findHospitals() {
 
       if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(
 
-      } else {
+          function(position) {
 
-        alert("Geolocation is not supported.");
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
 
-      }
+            document.getElementById("locationText").innerHTML =
+              "📍 Location detected successfully";
 
-    }
+            const mapsURL =
+              `https://www.google.com/maps/search/hospitals/@${lat},${lon},15z`;
 
-    function showPosition(position) {
+            window.open(mapsURL, "_blank");
 
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+          },
 
-      let city = "Bangalore";
-
-      if (latitude > 12 && longitude > 76) {
-        city = "Bangalore";
-      } else {
-        city = "Mysore";
-      }
-
-      document.getElementById("locationText").innerHTML =
-        "📍 Location Detected: " + city;
-
-      showHospitals(city);
-      showDoctors(city);
-
-    }
-
-    function showHospitals(city) {
-
-      const container = document.getElementById("hospitalContainer");
-
-      container.innerHTML = "";
-
-      hospitals[city].forEach(hospital => {
-
-        container.innerHTML += `
-
-          <div class="bg-white rounded-3xl p-6 shadow-2xl card">
-
-            <div class="flex justify-between items-center">
-
-              <h3 class="text-2xl font-bold text-green-600">
-                ${hospital.name}
-              </h3>
-
-              <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
-                ⭐ ${hospital.rating}
-              </span>
-
-            </div>
-
-            <p class="mt-4 text-gray-600">
-              📍 ${city}
-            </p>
-
-            <p class="mt-2 text-gray-600">
-              🕒 ${hospital.time}
-            </p>
-
-            <p class="mt-2 text-gray-600">
-              💰 ${hospital.fee}
-            </p>
-
-            <div class="mt-6 flex gap-3">
-
-              <button
-                onclick="bookAppointment()"
-                class="bg-sky-600 hover:bg-sky-700 text-white w-full py-2 rounded-xl">
-
-                Book
-
-              </button>
-
-              <button
-                onclick="callSupport()"
-                class="bg-green-500 hover:bg-green-600 text-white w-full py-2 rounded-xl">
-
-                Call
-
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-    }
-
-    function showDoctors(city) {
-
-      const container = document.getElementById("doctorContainer");
-
-      container.innerHTML = "";
-
-      doctors[city].forEach(doctor => {
-
-        container.innerHTML += `
-
-          <div class="bg-sky-50 rounded-3xl p-8 shadow-xl card">
-
-            <h3 class="text-2xl font-bold text-sky-700">
-              ${doctor.name}
-            </h3>
-
-            <p class="mt-3 text-gray-600">
-              ${doctor.specialization}
-            </p>
-
-            <p class="mt-2 text-gray-600">
-              Available: ${doctor.timing}
-            </p>
-
-            <p class="mt-2 text-green-600 font-semibold">
-              Available Today
-            </p>
-
-          </div>
-
-        `;
-
-      });
-
-    }
-
-    function voiceSupport() {
-
-      const speech = new SpeechSynthesisUtterance(
-        "Welcome to Affordable Healthcare Finder"
-      );
-
-      speech.lang = "en-US";
-
-      window.speechSynthesis.speak(speech);
-
-    }
-
-    function bookAppointment() {
-
-      alert("📅 Appointment Booked Successfully");
-
-    }
-
-    function callSupport() {
-
-      window.location.href = "tel:1800000111";
-
-    }
-
-    function ambulanceCall() {
-
-      alert("🚑 Ambulance Contacted");
-
-    }
-
-    function emergencyCall() {
-
-      window.location.href = "tel:108";
-
-    }
-
-    function checkMedicine() {
-
-      const medicine =
-        document.getElementById("medicineInput").value;
-
-      document.getElementById("medicineResult").innerHTML =
-        "✅ " + medicine + " is available nearby.";
-
-    }
-
-  </script>
-
-</body>
-
-</html>
+          function()
