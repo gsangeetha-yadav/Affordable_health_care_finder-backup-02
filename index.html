@@ -7,231 +7,103 @@
 
   <title>Affordable Healthcare Finder</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      transition: 0.3s;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
-<body class="bg-gradient-to-br from-blue-100 via-white to-green-100 text-gray-800">
+<body>
 
-  <!-- NAVBAR -->
+  <nav>
 
-  <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <h1>🏥 Healthcare Finder</h1>
 
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="nav-links">
 
-      <h1 class="text-3xl font-bold text-blue-700">
-        🏥 Healthcare Finder
-      </h1>
-
-      <div class="hidden md:flex gap-6 font-semibold">
-
-        <a href="#home" class="hover:text-blue-600">Home</a>
-
-        <a href="#features" class="hover:text-blue-600">Features</a>
-
-        <a href="#medicine" class="hover:text-blue-600">Medicine</a>
-
-        <a href="#emergency" class="hover:text-blue-600">Emergency</a>
-
-      </div>
+      <a href="#">Home</a>
+      <a href="#">Hospitals</a>
+      <a href="#">Doctors</a>
+      <a href="#">Emergency</a>
 
     </div>
 
   </nav>
 
-  <!-- HERO -->
+  <section class="hero">
 
-  <section id="home" class="text-center py-20 px-6">
+    <h2>Affordable Healthcare Finder 🩺</h2>
 
-    <h1 class="text-6xl font-bold text-blue-700">
-      Affordable Healthcare Finder 🩺
-    </h1>
-
-    <p class="mt-6 text-xl text-gray-600 max-w-4xl mx-auto">
-
-      Find nearby hospitals, doctors, medicine availability,
-      emergency contacts, voice support and affordable healthcare
-      services instantly.
-
+    <p>
+      Find nearby hospitals, doctors,
+      medicine availability and emergency support.
     </p>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-4">
+    <div class="buttons">
 
-      <button onclick="findHospitals()"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl shadow-xl font-semibold">
-
-        📍 Detect Nearby Hospitals
-
+      <button onclick="findNearbyHospitals()">
+        📍 Nearby Hospitals
       </button>
 
-      <button onclick="voiceSupport()"
-        class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl shadow-xl font-semibold">
-
+      <button onclick="voiceSupport()">
         🎤 Voice Support
-
       </button>
 
     </div>
 
-    <p id="locationText"
-      class="mt-8 text-2xl font-bold text-green-700"></p>
+    <input
+      type="text"
+      id="hospitalSearch"
+      placeholder="Search hospital name...">
+
+    <button onclick="searchHospital()">
+      Search Hospital
+    </button>
 
   </section>
 
-  <!-- FEATURES -->
+  <section>
 
-  <section id="features" class="py-16 px-8">
+    <h2 class="section-title">
+      Nearby Hospitals
+    </h2>
 
-    <div class="grid md:grid-cols-3 gap-8">
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl card">
-
-        <h2 class="text-2xl font-bold text-blue-700 mb-4">
-          📍 Nearby Hospitals
-        </h2>
-
-        <p class="text-gray-600">
-          Detects your current location and opens nearby real hospitals.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl card">
-
-        <h2 class="text-2xl font-bold text-blue-700 mb-4">
-          👨‍⚕️ Doctor Availability
-        </h2>
-
-        <p class="text-gray-600">
-          Check doctor availability and consultation details.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl card">
-
-        <h2 class="text-2xl font-bold text-blue-700 mb-4">
-          💰 Budget Filter
-        </h2>
-
-        <p class="text-gray-600">
-          Find affordable healthcare services nearby.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl card">
-
-        <h2 class="text-2xl font-bold text-blue-700 mb-4">
-          💊 Medicine Availability
-        </h2>
-
-        <p class="text-gray-600">
-          Search medicines available near you.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl card">
-
-        <h2 class="text-2xl font-bold text-blue-700 mb-4">
-          🚑 Emergency Support
-        </h2>
-
-        <p class="text-gray-600">
-          One click ambulance and emergency support.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl card">
-
-        <h2 class="text-2xl font-bold text-blue-700 mb-4">
-          ⭐ Ratings & Reviews
-        </h2>
-
-        <p class="text-gray-600">
-          View patient ratings and hospital reviews.
-        </p>
-
-      </div>
+    <div id="hospitalResults" class="cards">
 
     </div>
 
   </section>
 
-  <!-- DOCTORS -->
+  <section>
 
-  <section class="py-20 px-8 bg-white">
-
-    <h2 class="text-5xl font-bold text-center text-blue-700 mb-14">
+    <h2 class="section-title">
       👨‍⚕️ Available Doctors
     </h2>
 
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="cards">
 
-      <div class="bg-blue-50 p-8 rounded-3xl shadow-xl card">
+      <div class="card">
 
-        <h3 class="text-2xl font-bold text-blue-700">
-          Dr. Priya Sharma
-        </h3>
+        <h3>Dr. Priya Sharma</h3>
 
-        <p class="mt-3 text-gray-600">
-          Cardiologist
-        </p>
+        <p>Cardiologist</p>
 
-        <p class="mt-2 text-gray-600">
-          Experience: 12 Years
-        </p>
+        <p>10 AM - 5 PM</p>
 
-        <p class="mt-2 text-gray-600">
-          Available: 10 AM - 5 PM
-        </p>
-
-        <button onclick="bookAppointment()"
-          class="mt-5 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl">
-
+        <button onclick="bookAppointment()">
           Book Appointment
-
         </button>
 
       </div>
 
-      <div class="bg-green-50 p-8 rounded-3xl shadow-xl card">
+      <div class="card">
 
-        <h3 class="text-2xl font-bold text-green-700">
-          Dr. Rahul Verma
-        </h3>
+        <h3>Dr. Rahul Verma</h3>
 
-        <p class="mt-3 text-gray-600">
-          Neurologist
-        </p>
+        <p>Neurologist</p>
 
-        <p class="mt-2 text-gray-600">
-          Experience: 8 Years
-        </p>
+        <p>9 AM - 2 PM</p>
 
-        <p class="mt-2 text-gray-600">
-          Available: 9 AM - 2 PM
-        </p>
-
-        <button onclick="bookAppointment()"
-          class="mt-5 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-2xl">
-
+        <button onclick="bookAppointment()">
           Book Appointment
-
         </button>
 
       </div>
@@ -240,120 +112,41 @@
 
   </section>
 
-  <!-- MEDICINE -->
+  <section class="medicine-section">
 
-  <section id="medicine" class="py-20 px-8">
-
-    <h2 class="text-5xl font-bold text-center text-blue-700 mb-14">
+    <h2 class="section-title">
       💊 Medicine Availability
     </h2>
 
-    <div class="bg-white max-w-3xl mx-auto p-10 rounded-3xl shadow-2xl text-center">
+    <input
+      type="text"
+      id="medicineInput"
+      placeholder="Search Medicine">
 
-      <input type="text"
-        id="medicineInput"
-        placeholder="Search Medicine..."
-        class="w-full px-5 py-4 rounded-2xl border border-blue-300">
+    <button onclick="checkMedicine()">
+      Check
+    </button>
 
-      <button onclick="checkMedicine()"
-        class="mt-6 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-2xl shadow-lg font-semibold">
-
-        Check Availability
-
-      </button>
-
-      <p id="medicineResult"
-        class="mt-6 text-2xl font-bold text-green-700"></p>
-
-    </div>
+    <p id="medicineResult"></p>
 
   </section>
 
-  <!-- EMERGENCY -->
+  <section class="emergency">
 
-  <section id="emergency" class="py-20 px-8">
+    <h2>🚑 Emergency Support</h2>
 
-    <div class="bg-red-500 text-white rounded-3xl p-12 text-center shadow-2xl">
+    <button onclick="callAmbulance()">
+      Ambulance
+    </button>
 
-      <h2 class="text-5xl font-bold">
-        🚑 Emergency Support
-      </h2>
-
-      <p class="mt-6 text-lg">
-
-        Ambulance and emergency healthcare support available 24/7.
-
-      </p>
-
-      <div class="mt-10 flex flex-wrap justify-center gap-5">
-
-        <button onclick="callAmbulance()"
-          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
-
-          Ambulance
-
-        </button>
-
-        <button onclick="callEmergency()"
-          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
-
-          Emergency Call
-
-        </button>
-
-      </div>
-
-    </div>
+    <button onclick="callEmergency()">
+      Emergency Call
+    </button>
 
   </section>
 
-  <!-- FOOTER -->
+  <script src="script.js"></script>
 
-  <footer class="bg-blue-700 text-white py-10 text-center">
+</body>
 
-    <h2 class="text-3xl font-bold">
-      Affordable Healthcare Finder
-    </h2>
-
-    <p class="mt-4 text-blue-100">
-      Affordable healthcare access for everyone 🌍
-    </p>
-
-    <div class="mt-6 flex justify-center gap-6 flex-wrap text-sm">
-
-      <p>📞 1800-000-111</p>
-
-      <p>✉ support@healthfinder.com</p>
-
-      <p>🌐 English | ಕನ್ನಡ | हिंदी</p>
-
-    </div>
-
-  </footer>
-
-  <!-- JAVASCRIPT -->
-
-  <script>
-
-    function findHospitals() {
-
-      if (navigator.geolocation) {
-
-        navigator.geolocation.getCurrentPosition(
-
-          function(position) {
-
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            document.getElementById("locationText").innerHTML =
-              "📍 Location detected successfully";
-
-            const mapsURL =
-              `https://www.google.com/maps/search/hospitals/@${lat},${lon},15z`;
-
-            window.open(mapsURL, "_blank");
-
-          },
-
-          function()
+</html>
