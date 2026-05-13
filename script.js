@@ -16,6 +16,12 @@ const hospitals = [
     name: "Fortis Hospital",
     city: "Mysore",
     rating: "4.6"
+  },
+
+  {
+    name: "JSS Hospital",
+    city: "Mysore",
+    rating: "4.5"
   }
 
 ];
@@ -23,9 +29,20 @@ const hospitals = [
 function displayHospitals(data) {
 
   const container =
-    document.getElementById("hospitalResults");
+    document.getElementById(
+      "hospitalResults"
+    );
 
   container.innerHTML = "";
+
+  if (data.length === 0) {
+
+    container.innerHTML =
+      "<h3>No Hospitals Found</h3>";
+
+    return;
+
+  }
 
   data.forEach(hospital => {
 
@@ -53,16 +70,22 @@ function displayHospitals(data) {
 
 }
 
+displayHospitals(hospitals);
+
 function searchHospital() {
 
-  const search =
-    document.getElementById("hospitalSearch")
-    .value
-    .toLowerCase();
+  const searchText =
+    document.getElementById(
+      "hospitalSearch"
+    ).value.toLowerCase();
 
   const filtered =
-    hospitals.filter(h =>
-      h.name.toLowerCase().includes(search)
+    hospitals.filter(hospital =>
+
+      hospital.name
+      .toLowerCase()
+      .includes(searchText)
+
     );
 
   displayHospitals(filtered);
@@ -77,13 +100,19 @@ function findNearbyHospitals() {
 
       function(position) {
 
+        alert(
+          "Location Access Granted"
+        );
+
         displayHospitals(hospitals);
 
       },
 
-      function() {
+      function(error) {
 
-        alert("Please allow location access");
+        alert(
+          "Please allow location access"
+        );
 
       }
 
@@ -91,7 +120,9 @@ function findNearbyHospitals() {
 
   } else {
 
-    alert("Geolocation not supported");
+    alert(
+      "Geolocation not supported"
+    );
 
   }
 
@@ -113,11 +144,17 @@ function voiceSupport() {
 
       "Welcome to Affordable Healthcare Finder. " +
 
-      "This application helps users find nearby hospitals, " +
+      "This application helps users " +
 
-      "doctor availability, medicine support, emergency support, " +
+      "find nearby hospitals, " +
 
-      "appointment booking and healthcare services."
+      "doctor availability, " +
+
+      "medicine support, " +
+
+      "emergency support and " +
+
+      "appointment booking."
 
     );
 
@@ -130,28 +167,38 @@ function voiceSupport() {
 function checkMedicine() {
 
   const medicine =
-    document.getElementById("medicineInput").value;
+    document.getElementById(
+      "medicineInput"
+    ).value;
 
-  document.getElementById("medicineResult")
-    .innerHTML =
-    medicine + " is available nearby.";
+  document.getElementById(
+    "medicineResult"
+  ).innerHTML =
+
+    "✅ " +
+    medicine +
+    " is available nearby.";
 
 }
 
 function bookAppointment() {
 
-  alert("Appointment booked successfully");
+  alert(
+    "✅ Appointment Booked Successfully"
+  );
 
 }
 
 function callAmbulance() {
 
-  window.location.href = "tel:108";
+  window.location.href =
+    "tel:108";
 
 }
 
 function callEmergency() {
 
-  window.location.href = "tel:102";
+  window.location.href =
+    "tel:102";
 
 }
