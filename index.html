@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
   <title>Affordable Healthcare Finder</title>
 
@@ -12,6 +15,8 @@
 </head>
 
 <body>
+
+  <!-- NAVBAR -->
 
   <nav>
 
@@ -28,54 +33,80 @@
 
   </nav>
 
+  <!-- HERO -->
+
   <section class="hero">
 
-    <h2>Affordable Healthcare Finder 🩺</h2>
+    <h2>
+      Affordable Healthcare Finder 🩺
+    </h2>
 
     <p>
-      Find nearby hospitals, doctors,
-      medicine availability and emergency support.
+
+      Find nearby hospitals,
+      doctors, emergency services,
+      medicine availability and more.
+
     </p>
 
-    <div class="buttons">
+    <div class="hero-buttons">
 
       <button onclick="findNearbyHospitals()">
+
         📍 Nearby Hospitals
+
       </button>
 
       <button onclick="voiceSupport()">
+
         🎤 Voice Support
+
       </button>
 
     </div>
 
-    <input
-      type="text"
-      id="hospitalSearch"
-      placeholder="Search hospital name...">
+    <div class="search-box">
 
-    <button onclick="searchHospital()">
-      Search Hospital
-    </button>
+      <input
+        type="text"
+        id="hospitalSearch"
+        placeholder="Search Hospital Name">
 
-  </section>
+      <button onclick="searchHospital()">
 
-  <section>
+        Search
 
-    <h2 class="section-title">
-      Nearby Hospitals
-    </h2>
-
-    <div id="hospitalResults" class="cards">
+      </button>
 
     </div>
 
   </section>
 
+  <!-- HOSPITALS -->
+
   <section>
 
     <h2 class="section-title">
+
+      🏥 Hospitals
+
+    </h2>
+
+    <div id="hospitalResults"
+      class="cards">
+
+    </div>
+
+  </section>
+
+  <!-- DOCTORS -->
+
+  <section>
+
+    <h2 class="section-title">
+
       👨‍⚕️ Available Doctors
+
     </h2>
 
     <div class="cards">
@@ -86,10 +117,12 @@
 
         <p>Cardiologist</p>
 
-        <p>10 AM - 5 PM</p>
+        <p>Available: 10 AM - 5 PM</p>
 
         <button onclick="bookAppointment()">
+
           Book Appointment
+
         </button>
 
       </div>
@@ -100,10 +133,12 @@
 
         <p>Neurologist</p>
 
-        <p>9 AM - 2 PM</p>
+        <p>Available: 9 AM - 2 PM</p>
 
         <button onclick="bookAppointment()">
+
           Book Appointment
+
         </button>
 
       </div>
@@ -112,38 +147,66 @@
 
   </section>
 
-  <section class="medicine-section">
+  <!-- MEDICINE -->
+
+  <section class="medicine">
 
     <h2 class="section-title">
+
       💊 Medicine Availability
+
     </h2>
 
     <input
       type="text"
       id="medicineInput"
-      placeholder="Search Medicine">
+      placeholder="Enter medicine name">
 
     <button onclick="checkMedicine()">
-      Check
+
+      Check Medicine
+
     </button>
 
     <p id="medicineResult"></p>
 
   </section>
 
+  <!-- EMERGENCY -->
+
   <section class="emergency">
 
-    <h2>🚑 Emergency Support</h2>
+    <h2>
+
+      🚑 Emergency Support
+
+    </h2>
 
     <button onclick="callAmbulance()">
+
       Ambulance
+
     </button>
 
     <button onclick="callEmergency()">
-      Emergency Call
+
+      Emergency
+
     </button>
 
   </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+
+      Affordable Healthcare Finder © 2026
+
+    </p>
+
+  </footer>
 
   <script src="script.js"></script>
 
