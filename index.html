@@ -4,30 +4,49 @@
 <head>
 
   <meta charset="UTF-8">
-
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Affordable Healthcare Finder</title>
 
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    body{
+      font-family: Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    .card:hover{
+      transform: translateY(-6px);
+      transition:0.3s;
+    }
+
+  </style>
 
 </head>
 
-<body>
+<body class="bg-gradient-to-br from-blue-100 via-white to-green-100">
 
   <!-- NAVBAR -->
 
-  <nav>
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
 
-    <h1>🏥 Healthcare Finder</h1>
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <div class="nav-links">
+      <h1 class="text-3xl font-bold text-blue-700">
+        🏥 Affordable Healthcare Finder
+      </h1>
 
-      <a href="#">Home</a>
-      <a href="#">Hospitals</a>
-      <a href="#">Doctors</a>
-      <a href="#">Emergency</a>
+      <div class="hidden md:flex gap-6 font-semibold text-gray-700">
+
+        <a href="#home" class="hover:text-blue-600">Home</a>
+
+        <a href="#search" class="hover:text-blue-600">Search</a>
+
+        <a href="#emergency" class="hover:text-blue-600">Emergency</a>
+
+      </div>
 
     </div>
 
@@ -35,29 +54,40 @@
 
   <!-- HERO -->
 
-  <section class="hero">
+  <section id="home" class="py-20 px-6 text-center">
 
-    <h2>
+    <h1 class="text-6xl font-bold text-blue-700 leading-tight">
+
       Affordable Healthcare Finder 🩺
-    </h2>
 
-    <p>
+    </h1>
 
-      Find nearby hospitals,
-      doctors, emergency services,
-      medicine availability and more.
+    <p class="mt-6 text-xl text-gray-600 max-w-4xl mx-auto">
+
+      Search treatments, hospitals, treatment budgets,
+      emergency contacts and affordable healthcare services instantly.
 
     </p>
 
-    <div class="hero-buttons">
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
 
-      <button onclick="findNearbyHospitals()">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search disease or treatment..."
+        class="px-5 py-4 rounded-2xl border border-blue-300 w-96 shadow-md">
 
-        📍 Nearby Hospitals
+      <button
+        onclick="searchTreatment()"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl shadow-xl font-semibold">
+
+        🔍 Search
 
       </button>
 
-      <button onclick="voiceSupport()">
+      <button
+        onclick="voiceSupport()"
+        class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl shadow-xl font-semibold">
 
         🎤 Voice Support
 
@@ -65,81 +95,53 @@
 
     </div>
 
-    <div class="search-box">
-
-      <input
-        type="text"
-        id="hospitalSearch"
-        placeholder="Search Hospital Name">
-
-      <button onclick="searchHospital()">
-
-        Search
-
-      </button>
-
-    </div>
-
   </section>
 
-  <!-- HOSPITALS -->
+  <!-- FEATURES -->
 
-  <section>
+  <section class="px-8 py-10">
 
-    <h2 class="section-title">
+    <div class="grid md:grid-cols-3 gap-8">
 
-      🏥 Hospitals
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
 
-    </h2>
+        <h3 class="text-2xl font-bold text-blue-700 mb-4">
+          🏥 Real Hospitals
+        </h3>
 
-    <div id="hospitalResults"
-      class="cards">
+        <p class="text-gray-600">
 
-    </div>
+          Search hospitals with real treatment budgets.
 
-  </section>
-
-  <!-- DOCTORS -->
-
-  <section>
-
-    <h2 class="section-title">
-
-      👨‍⚕️ Available Doctors
-
-    </h2>
-
-    <div class="cards">
-
-      <div class="card">
-
-        <h3>Dr. Priya Sharma</h3>
-
-        <p>Cardiologist</p>
-
-        <p>Available: 10 AM - 5 PM</p>
-
-        <button onclick="bookAppointment()">
-
-          Book Appointment
-
-        </button>
+        </p>
 
       </div>
 
-      <div class="card">
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
 
-        <h3>Dr. Rahul Verma</h3>
+        <h3 class="text-2xl font-bold text-blue-700 mb-4">
+          💰 Budget Information
+        </h3>
 
-        <p>Neurologist</p>
+        <p class="text-gray-600">
 
-        <p>Available: 9 AM - 2 PM</p>
+          Compare treatment costs easily.
 
-        <button onclick="bookAppointment()">
+        </p>
 
-          Book Appointment
+      </div>
 
-        </button>
+      <div class="bg-white p-8 rounded-3xl shadow-xl card">
+
+        <h3 class="text-2xl font-bold text-blue-700 mb-4">
+          🚑 Emergency Support
+        </h3>
+
+        <p class="text-gray-600">
+
+          Ambulance and emergency call support available.
+
+        </p>
 
       </div>
 
@@ -147,68 +149,343 @@
 
   </section>
 
-  <!-- MEDICINE -->
+  <!-- SEARCH RESULTS -->
 
-  <section class="medicine">
+  <section id="search" class="py-20 px-8">
 
-    <h2 class="section-title">
+    <h2 class="text-5xl font-bold text-center text-blue-700 mb-14">
 
-      💊 Medicine Availability
+      🔍 Treatment Search Results
 
     </h2>
 
-    <input
-      type="text"
-      id="medicineInput"
-      placeholder="Enter medicine name">
+    <div id="results"
+      class="grid md:grid-cols-2 gap-8">
 
-    <button onclick="checkMedicine()">
-
-      Check Medicine
-
-    </button>
-
-    <p id="medicineResult"></p>
+    </div>
 
   </section>
 
   <!-- EMERGENCY -->
 
-  <section class="emergency">
+  <section id="emergency" class="py-20 px-8">
 
-    <h2>
+    <div class="bg-red-500 text-white rounded-3xl p-12 text-center shadow-2xl">
 
-      🚑 Emergency Support
+      <h2 class="text-5xl font-bold">
 
-    </h2>
+        🚑 Emergency Support
 
-    <button onclick="callAmbulance()">
+      </h2>
 
-      Ambulance
+      <p class="mt-6 text-lg">
 
-    </button>
+        Emergency ambulance and healthcare support available 24/7.
 
-    <button onclick="callEmergency()">
+      </p>
 
-      Emergency
+      <div class="mt-10 flex flex-wrap justify-center gap-5">
 
-    </button>
+        <button
+          onclick="callAmbulance()"
+          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
+
+          Ambulance
+
+        </button>
+
+        <button
+          onclick="callEmergency()"
+          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
+
+          Emergency Call
+
+        </button>
+
+      </div>
+
+    </div>
 
   </section>
 
   <!-- FOOTER -->
 
-  <footer>
+  <footer class="bg-blue-700 text-white py-10 text-center">
 
-    <p>
+    <h2 class="text-3xl font-bold">
 
-      Affordable Healthcare Finder © 2026
+      Affordable Healthcare Finder
+
+    </h2>
+
+    <p class="mt-4 text-blue-100">
+
+      Affordable healthcare for everyone 🌍
 
     </p>
 
+    <div class="mt-6 flex justify-center gap-6 flex-wrap text-sm">
+
+      <p>📞 1800-000-111</p>
+
+      <p>✉ support@healthfinder.com</p>
+
+      <p>🌐 English | ಕನ್ನಡ | हिंदी</p>
+
+    </div>
+
   </footer>
 
-  <script src="script.js"></script>
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    const hospitalData = {
+
+      fever: [
+
+        {
+          hospital: "Apollo Hospital",
+          treatment: "General Fever Treatment",
+          budget: "₹500 - ₹1500",
+          location: "Bangalore",
+          phone: "08026304050",
+          rating: "4.8"
+        },
+
+        {
+          hospital: "Manipal Hospital",
+          treatment: "Advanced Fever Diagnosis",
+          budget: "₹1500 - ₹3000",
+          location: "Bangalore",
+          phone: "08025024444",
+          rating: "4.7"
+        }
+
+      ],
+
+      diabetes: [
+
+        {
+          hospital: "Fortis Hospital",
+          treatment: "Diabetes Management Package",
+          budget: "₹3000 - ₹8000",
+          location: "Bangalore",
+          phone: "08066214444",
+          rating: "4.9"
+        }
+
+      ],
+
+      cancer: [
+
+        {
+          hospital: "Kidwai Cancer Institute",
+          treatment: "Cancer Treatment & Chemotherapy",
+          budget: "₹50000 - ₹200000",
+          location: "Bangalore",
+          phone: "08026094000",
+          rating: "4.8"
+        }
+
+      ],
+
+      heart: [
+
+        {
+          hospital: "Narayana Health",
+          treatment: "Heart Surgery",
+          budget: "₹150000 - ₹400000",
+          location: "Bangalore",
+          phone: "08071222222",
+          rating: "4.9"
+        }
+
+      ],
+
+      kidney: [
+
+        {
+          hospital: "Aster CMI Hospital",
+          treatment: "Kidney Stone Treatment",
+          budget: "₹40000 - ₹100000",
+          location: "Bangalore",
+          phone: "08043420100",
+          rating: "4.7"
+        }
+
+      ]
+
+    };
+
+    function searchTreatment(){
+
+      const input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+      const results =
+        document.getElementById("results");
+
+      results.innerHTML = "";
+
+      if(hospitalData[input]){
+
+        hospitalData[input].forEach(item => {
+
+          results.innerHTML += `
+
+            <div class="bg-white rounded-3xl p-8 shadow-2xl card">
+
+              <div class="flex justify-between items-center">
+
+                <h3 class="text-2xl font-bold text-green-600">
+
+                  ${item.hospital}
+
+                </h3>
+
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+
+                  ⭐ ${item.rating}
+
+                </span>
+
+              </div>
+
+              <p class="mt-4 text-gray-700">
+
+                🩺 Treatment:
+                ${item.treatment}
+
+              </p>
+
+              <p class="mt-3 text-gray-700">
+
+                📍 Location:
+                ${item.location}
+
+              </p>
+
+              <p class="mt-3 text-gray-700">
+
+                💰 Budget:
+                ${item.budget}
+
+              </p>
+
+              <div class="mt-6 flex gap-3">
+
+                <button
+                  onclick="bookAppointment()"
+                  class="bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-2xl">
+
+                  Book Appointment
+
+                </button>
+
+                <button
+                  onclick="callHospital('${item.phone}')"
+                  class="bg-green-500 hover:bg-green-600 text-white w-full py-3 rounded-2xl">
+
+                  Call
+
+                </button>
+
+              </div>
+
+              <button
+                onclick="openMap('${item.hospital}')"
+                class="mt-4 bg-purple-500 hover:bg-purple-600 text-white w-full py-3 rounded-2xl">
+
+                Open In Maps
+
+              </button>
+
+            </div>
+
+          `;
+
+        });
+
+      }
+
+      else{
+
+        results.innerHTML = `
+
+          <div class="bg-white rounded-3xl p-10 shadow-xl col-span-2 text-center">
+
+            <h2 class="text-3xl font-bold text-red-500">
+
+              ❌ No Results Found
+
+            </h2>
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+    function voiceSupport(){
+
+      const speech =
+        new SpeechSynthesisUtterance(
+
+          "Welcome to Affordable Healthcare Finder. " +
+
+          "Search diseases like cancer, diabetes, fever, kidney or heart " +
+
+          "to find hospitals, treatments and budgets."
+
+        );
+
+      speech.lang = "en-US";
+
+      speech.rate = 1;
+
+      window.speechSynthesis.speak(speech);
+
+    }
+
+    function bookAppointment(){
+
+      alert("✅ Appointment Booked Successfully");
+
+    }
+
+    function callHospital(number){
+
+      window.location.href = "tel:" + number;
+
+    }
+
+    function callAmbulance(){
+
+      window.location.href = "tel:108";
+
+    }
+
+    function callEmergency(){
+
+      window.location.href = "tel:102";
+
+    }
+
+    function openMap(hospital){
+
+      const url =
+        "https://www.google.com/maps/search/" + hospital;
+
+      window.open(url, "_blank");
+
+    }
+
+  </script>
 
 </body>
 
