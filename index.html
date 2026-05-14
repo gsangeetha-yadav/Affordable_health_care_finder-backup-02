@@ -1,554 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Affordable Healthcare Finder</title>
 
-  <title>Affordable Healthcare Finder</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-
-    body{
-      font-family: Arial, sans-serif;
-    }
-
-    .card:hover{
-      transform: translateY(-5px);
-      transition: 0.3s;
-    }
-
-  </style>
+<script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body class="bg-gradient-to-br from-blue-100 via-white to-green-100">
+<body class="bg-blue-50">
 
-  <!-- NAVBAR -->
+<!-- HEADER -->
 
-  <nav class="bg-white shadow-lg sticky top-0 z-50">
+<div class="bg-blue-700 text-white p-6 text-center shadow-lg">
 
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<h1 class="text-4xl font-bold">
+🏥 Affordable Healthcare Finder
+</h1>
 
-      <h1 class="text-3xl font-bold text-blue-700">
-        🏥 Affordable Healthcare Finder
-      </h1>
+<p class="mt-3 text-lg">
+Search treatments, hospitals and budgets
+</p>
 
-      <div class="hidden md:flex gap-6 font-semibold text-gray-700">
+</div>
 
-        <a href="#home">Home</a>
-        <a href="#search">Search</a>
-        <a href="#emergency">Emergency</a>
+<!-- SEARCH -->
 
-      </div>
+<div class="max-w-4xl mx-auto mt-10 p-6">
 
-    </div>
+<div class="bg-white p-8 rounded-3xl shadow-2xl">
 
-  </nav>
+<div class="flex flex-col md:flex-row gap-4">
 
-  <!-- HERO -->
+<input
+id="searchInput"
+type="text"
+placeholder="Search treatment..."
+class="border border-blue-300 p-4 rounded-2xl w-full text-lg">
 
-  <section id="home" class="py-20 px-6 text-center">
+<button
+onclick="searchTreatment()"
+class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl text-lg">
 
-    <h1 class="text-6xl font-bold text-blue-700">
+🔍 Search
 
-      Affordable Healthcare Finder 🩺
+</button>
 
-    </h1>
+<button
+onclick="voiceSupport()"
+class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl text-lg">
 
-    <p class="mt-6 text-xl text-gray-700 max-w-4xl mx-auto">
+🎤 Voice
 
-      Search treatments and view hospital treatment details,
-      budget, treatment process, ratings and emergency support.
+</button>
 
-    </p>
+</div>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-4">
+</div>
 
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search treatment..."
-        class="px-5 py-4 rounded-2xl border border-blue-300 w-96 shadow-lg">
+</div>
 
-      <button
-        onclick="searchTreatment()"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl shadow-xl">
+<!-- RESULTS -->
 
-        🔍 Search
+<div id="results"
+class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-6">
 
-      </button>
+</div>
 
-      <button
-        onclick="voiceSupport()"
-        class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl shadow-xl">
+<!-- EMERGENCY -->
 
-        🎤 Voice Support
+<div class="max-w-5xl mx-auto mt-10 p-6">
 
-      </button>
+<div class="bg-red-500 text-white p-10 rounded-3xl text-center shadow-2xl">
 
-    </div>
+<h1 class="text-4xl font-bold">
+🚑 Emergency Support
+</h1>
 
-  </section>
+<div class="mt-8 flex justify-center gap-5 flex-wrap">
 
-  <!-- RESULTS -->
+<button
+onclick="callAmbulance()"
+class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
 
-  <section id="search" class="py-20 px-8">
+Ambulance
 
-    <h2 class="text-5xl font-bold text-center text-blue-700 mb-14">
+</button>
 
-      Treatment Details
+<button
+onclick="callEmergency()"
+class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
 
-    </h2>
+Emergency
 
-    <div id="results"
-      class="grid md:grid-cols-2 gap-8">
+</button>
 
-    </div>
+</div>
 
-  </section>
+</div>
 
-  <!-- EMERGENCY -->
+</div>
 
-  <section id="emergency" class="py-20 px-8">
+<script>
 
-    <div class="bg-red-500 text-white rounded-3xl p-12 text-center shadow-2xl">
+const hospitalData = {
 
-      <h2 class="text-5xl font-bold">
+"diabetic": {
 
-        🚑 Emergency Support
+hospital: "Aaryadana Hospital",
 
-      </h2>
+rating: "4.7",
 
-      <p class="mt-5 text-lg">
+budget: "₹3000 - ₹8000",
 
-        Emergency ambulance and healthcare support available.
+location: "Ballari",
 
-      </p>
+phone: "08392256789",
 
-      <div class="mt-10 flex flex-wrap justify-center gap-5">
+treatment:
+"Diabetes Management & Sugar Control",
 
-        <button
-          onclick="callAmbulance()"
-          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
+details:
+"Includes sugar test, insulin monitoring, BP checkup, diet consultation and diabetic care."
 
-          Ambulance
+},
 
-        </button>
+"cancer": {
 
-        <button
-          onclick="callEmergency()"
-          class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
+hospital: "BHCC Hospital Ballari",
 
-          Emergency Call
+rating: "4.8",
 
-        </button>
+budget: "₹50000 - ₹200000",
 
-      </div>
+location: "Ballari",
 
-    </div>
+phone: "08392278901",
 
-  </section>
+treatment:
+"Cancer Treatment & Chemotherapy",
 
-  <!-- FOOTER -->
+details:
+"Includes chemotherapy, radiation therapy, ICU support and cancer diagnosis."
 
-  <footer class="bg-blue-700 text-white py-10 text-center">
+},
 
-    <h2 class="text-3xl font-bold">
+"heart attack": {
 
-      Affordable Healthcare Finder
+hospital: "Hrudayalaya Hospital",
 
-    </h2>
+rating: "4.9",
 
-    <p class="mt-4">
+budget: "₹100000 - ₹300000",
 
-      Healthcare support for everyone 🌍
+location: "Ballari",
 
-    </p>
+phone: "08392267890",
 
-  </footer>
+treatment:
+"Heart Attack Emergency Care",
 
-  <!-- JAVASCRIPT -->
+details:
+"Includes ECG scan, angioplasty, ICU monitoring and emergency treatment."
 
-  <script>
+},
 
-    const hospitalData = {
+"cardiac arrest": {
 
-      diabetic: [
+hospital: "Hrudayalaya Hospital",
 
-        {
+rating: "4.9",
 
-          hospital: "Aaryadana Hospital",
+budget: "₹150000 - ₹400000",
 
-          treatment: "Diabetes Management & Sugar Control",
+location: "Ballari",
 
-          budget: "₹3000 - ₹8000",
+phone: "08392267890",
 
-          location: "Ballari",
+treatment:
+"Cardiac Arrest ICU Care",
 
-          rating: "4.7",
+details:
+"Includes CPR support, ventilator support and emergency cardiac care."
 
-          phone: "08392256789",
+},
 
-          details:
-          "This treatment includes sugar testing, insulin monitoring, diet consultation, blood pressure checkup and regular diabetic management."
+"kidney": {
 
-        }
+hospital: "Ballari Lifeline Hospital",
 
-      ],
+rating: "4.6",
 
-      cancer: [
+budget: "₹40000 - ₹100000",
 
-        {
+location: "Ballari",
 
-          hospital: "BHCC Hospital Ballari",
+phone: "08392245678",
 
-          treatment: "Cancer Treatment & Chemotherapy",
+treatment:
+"Kidney Stone Treatment",
 
-          budget: "₹50000 - ₹200000",
+details:
+"Includes kidney scan, dialysis support and kidney stone removal."
 
-          location: "Ballari",
+},
 
-          rating: "4.8",
+"lungs": {
 
-          phone: "08392278901",
+hospital: "BKS Hospital Ballari",
 
-          details:
-          "Treatment includes chemotherapy, radiation therapy, cancer diagnosis scans, specialist consultation and recovery monitoring."
+rating: "4.5",
 
-        }
+budget: "₹10000 - ₹50000",
 
-      ],
+location: "Ballari",
 
-      "heart attack": [
+phone: "08392234567",
 
-        {
+treatment:
+"Lung Infection Treatment",
 
-          hospital: "Hrudayalaya Hospital",
+details:
+"Includes oxygen support, respiratory therapy and lung infection care."
 
-          treatment: "Heart Attack Emergency Treatment",
+},
 
-          budget: "₹100000 - ₹300000",
+"chronic disorders": {
 
-          location: "Ballari",
+hospital: "Aaryadana Hospital",
 
-          rating: "4.9",
+rating: "4.7",
 
-          phone: "08392267890",
+budget: "₹15000 - ₹70000",
 
-          details:
-          "Treatment includes emergency ICU care, ECG scan, angioplasty, blood clot removal and heart monitoring."
+location: "Ballari",
 
-        }
+phone: "08392256789",
 
-      ],
+treatment:
+"Chronic Disease Management",
 
-      "cardiac arrest": [
+details:
+"Includes long term monitoring, medicine support and specialist consultation."
 
-        {
+}
 
-          hospital: "Hrudayalaya Hospital",
+};
 
-          treatment: "Cardiac Arrest ICU Care",
+function searchTreatment(){
 
-          budget: "₹150000 - ₹400000",
+const input =
+document.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
 
-          location: "Ballari",
+const results =
+document.getElementById("results");
 
-          rating: "4.9",
+results.innerHTML = "";
 
-          phone: "08392267890",
+if(hospitalData[input]){
 
-          details:
-          "Treatment includes emergency CPR support, ventilator support, ICU monitoring and advanced cardiac care."
+const item = hospitalData[input];
 
-        }
+results.innerHTML = `
 
-      ],
+<div class="bg-white p-8 rounded-3xl shadow-2xl">
 
-      kidney: [
+<h1 class="text-3xl font-bold text-green-600">
 
-        {
+${item.hospital}
 
-          hospital: "Ballari Lifeline Hospital",
+</h1>
 
-          treatment: "Kidney Stone & Kidney Care Treatment",
+<p class="mt-4 text-lg">
 
-          budget: "₹40000 - ₹100000",
+⭐ Rating:
+<b>${item.rating}</b>
 
-          location: "Ballari",
+</p>
 
-          rating: "4.6",
+<p class="mt-3 text-lg">
 
-          phone: "08392245678",
+🩺 Treatment:
+<b>${item.treatment}</b>
 
-          details:
-          "Treatment includes kidney scan, dialysis support, kidney stone removal and specialist consultation."
+</p>
 
-        }
+<p class="mt-3 text-lg">
 
-      ],
+💰 Budget:
+<b>${item.budget}</b>
 
-      lungs: [
+</p>
 
-        {
+<p class="mt-3 text-lg">
 
-          hospital: "BKS Hospital Ballari",
+📍 Location:
+<b>${item.location}</b>
 
-          treatment: "Lung Infection & Respiratory Care",
+</p>
 
-          budget: "₹10000 - ₹50000",
+<p class="mt-4 text-gray-700 text-lg leading-8">
 
-          location: "Ballari",
+📄 ${item.details}
 
-          rating: "4.5",
+</p>
 
-          phone: "08392234567",
+<div class="grid grid-cols-2 gap-4 mt-8">
 
-          details:
-          "Treatment includes oxygen support, lung scanning, respiratory therapy and infection treatment."
+<button
+onclick="callHospital('${item.phone}')"
+class="bg-green-500 hover:bg-green-600 text-white py-3 rounded-2xl">
 
-        }
+📞 Call
 
-      ],
+</button>
 
-      "chronic disorders": [
+<button
+onclick="openMap('${item.hospital}')"
+class="bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-2xl">
 
-        {
+📍 Maps
 
-          hospital: "Aaryadana Hospital",
+</button>
 
-          treatment: "Chronic Disease Management",
+<button
+onclick="bookAppointment()"
+class="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl">
 
-          budget: "₹15000 - ₹70000",
+📅 Appointment
 
-          location: "Ballari",
+</button>
 
-          rating: "4.7",
+<button
+onclick="shareDetails()"
+class="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-2xl">
 
-          phone: "08392256789",
+📤 Share
 
-          details:
-          "Treatment includes long-term disease monitoring, medicine support, regular testing and specialist care."
+</button>
 
-        }
+</div>
 
-      ]
+</div>
 
-    };
+`;
 
-    function searchTreatment(){
+}
 
-      const input =
-      document.getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+else{
 
-      const results =
-      document.getElementById("results");
+results.innerHTML = `
 
-      results.innerHTML = "";
+<div class="bg-white p-10 rounded-3xl shadow-2xl text-center w-full">
 
-      if(hospitalData[input]){
+<h1 class="text-3xl text-red-500 font-bold">
 
-        hospitalData[input].forEach(item => {
+❌ Treatment Not Found
 
-          results.innerHTML += `
+</h1>
 
-            <div class="bg-white p-8 rounded-3xl shadow-2xl card">
+<p class="mt-5 text-lg">
 
-              <div class="flex justify-between items-center">
+Try:
+diabetic,
+cancer,
+kidney,
+lungs,
+heart attack,
+cardiac arrest,
+chronic disorders
 
-                <h3 class="text-2xl font-bold text-green-600">
+</p>
 
-                  ${item.hospital}
+</div>
 
-                </h3>
+`;
 
-                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+}
 
-                  ⭐ ${item.rating}
+}
 
-                </span>
+function callHospital(number){
 
-              </div>
+window.location.href = "tel:" + number;
 
-              <p class="mt-4 text-gray-700">
+}
 
-                🩺 <b>Treatment:</b>
-                ${item.treatment}
+function openMap(hospital){
 
-              </p>
+window.open(
+"https://www.google.com/maps/search/" + hospital,
+"_blank"
+);
 
-              <p class="mt-3 text-gray-700">
+}
 
-                💰 <b>Budget:</b>
-                ${item.budget}
+function bookAppointment(){
 
-              </p>
+alert("✅ Appointment Booked Successfully");
 
-              <p class="mt-3 text-gray-700">
+}
 
-                📍 <b>Location:</b>
-                ${item.location}
+function shareDetails(){
 
-              </p>
+alert("✅ Hospital details shared");
 
-              <p class="mt-3 text-gray-700 leading-7">
+}
 
-                📄 <b>Treatment Details:</b><br>
-                ${item.details}
+function callAmbulance(){
 
-              </p>
+window.location.href = "tel:108";
 
-              <div class="mt-6 grid grid-cols-2 gap-4">
+}
 
-                <button
-                  onclick="callHospital('${item.phone}')"
-                  class="bg-green-500 hover:bg-green-600 text-white py-3 rounded-2xl">
+function callEmergency(){
 
-                  📞 Call Hospital
+window.location.href = "tel:102";
 
-                </button>
+}
 
-                <button
-                  onclick="openMap('${item.hospital}')"
-                  class="bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-2xl">
+function voiceSupport(){
 
-                  📍 Open Map
+const speech =
+new SpeechSynthesisUtterance(
 
-                </button>
+"Welcome to Affordable Healthcare Finder. Search treatments like diabetic, cancer, kidney, lungs, heart attack and chronic disorders to view hospital budgets and treatment details."
 
-                <button
-                  onclick="bookAppointment()"
-                  class="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl">
+);
 
-                  📅 Appointment
+speech.lang = "en-US";
 
-                </button>
+window.speechSynthesis.speak(speech);
 
-                <button
-                  onclick="shareDetails('${item.hospital}','${item.treatment}')"
-                  class="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-2xl">
+}
 
-                  📤 Share
-
-                </button>
-
-              </div>
-
-            </div>
-
-          `;
-
-        });
-
-      }
-
-      else{
-
-        results.innerHTML = `
-
-          <div class="bg-white p-10 rounded-3xl shadow-xl col-span-2 text-center">
-
-            <h2 class="text-3xl font-bold text-red-500">
-
-              ❌ Treatment Not Found
-
-            </h2>
-
-            <p class="mt-4 text-gray-600">
-
-              Try searching:
-              diabetic,
-              cancer,
-              heart attack,
-              cardiac arrest,
-              kidney,
-              lungs,
-              chronic disorders
-
-            </p>
-
-          </div>
-
-        `;
-
-      }
-
-    }
-
-    function callHospital(number){
-
-      window.location.href = "tel:" + number;
-
-    }
-
-    function openMap(hospital){
-
-      const url =
-      "https://www.google.com/maps/search/" + hospital;
-
-      window.open(url, "_blank");
-
-    }
-
-    function bookAppointment(){
-
-      alert("✅ Appointment Booking Request Sent");
-
-    }
-
-    function shareDetails(hospital,treatment){
-
-      const text =
-      hospital + " - " + treatment;
-
-      navigator.clipboard.writeText(text);
-
-      alert("✅ Hospital details copied");
-
-    }
-
-    function callAmbulance(){
-
-      window.location.href = "tel:108";
-
-    }
-
-    function callEmergency(){
-
-      window.location.href = "tel:102";
-
-    }
-
-    function voiceSupport(){
-
-      const speech =
-      new SpeechSynthesisUtterance(
-
-        "Welcome to Affordable Healthcare Finder. " +
-
-        "Search treatments like diabetic, cancer, heart attack, cardiac arrest, kidney, lungs and chronic disorders " +
-
-        "to view hospital details, treatment process and budgets."
-
-      );
-
-      speech.lang = "en-US";
-
-      speech.rate = 1;
-
-      window.speechSynthesis.speak(speech);
-
-    }
-
-  </script>
+</script>
 
 </body>
-
 </html>
