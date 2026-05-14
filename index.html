@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,39 +11,43 @@
 
 </head>
 
-<body class="bg-blue-50">
+<body class="bg-gradient-to-r from-blue-100 to-green-100 min-h-screen">
 
 <!-- HEADER -->
 
-<div class="bg-blue-700 text-white p-6 text-center shadow-lg">
+<div class="bg-white shadow-lg p-6">
 
-<h1 class="text-4xl font-bold">
+<h1 class="text-5xl font-bold text-blue-700 text-center">
+
 🏥 Affordable Healthcare Finder
+
 </h1>
 
-<p class="mt-3 text-lg">
-Search treatments, hospitals and budgets
+<p class="text-center text-gray-600 mt-4 text-xl">
+
+Search Hospitals or Treatments
+
 </p>
 
 </div>
 
 <!-- SEARCH -->
 
-<div class="max-w-4xl mx-auto mt-10 p-6">
+<div class="max-w-5xl mx-auto p-6 mt-10">
 
 <div class="bg-white p-8 rounded-3xl shadow-2xl">
 
 <div class="flex flex-col md:flex-row gap-4">
 
 <input
-id="searchInput"
 type="text"
-placeholder="Search treatment..."
+id="searchInput"
+placeholder="Search hospital or treatment..."
 class="border border-blue-300 p-4 rounded-2xl w-full text-lg">
 
 <button
-onclick="searchTreatment()"
-class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl text-lg">
+onclick="searchHospital()"
+class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl">
 
 🔍 Search
 
@@ -50,7 +55,7 @@ class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl text-lg">
 
 <button
 onclick="voiceSupport()"
-class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl text-lg">
+class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl">
 
 🎤 Voice
 
@@ -64,192 +69,124 @@ class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl text-lg"
 
 <!-- RESULTS -->
 
-<div id="results"
+<div
+id="results"
 class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-6">
-
-</div>
-
-<!-- EMERGENCY -->
-
-<div class="max-w-5xl mx-auto mt-10 p-6">
-
-<div class="bg-red-500 text-white p-10 rounded-3xl text-center shadow-2xl">
-
-<h1 class="text-4xl font-bold">
-🚑 Emergency Support
-</h1>
-
-<div class="mt-8 flex justify-center gap-5 flex-wrap">
-
-<button
-onclick="callAmbulance()"
-class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
-
-Ambulance
-
-</button>
-
-<button
-onclick="callEmergency()"
-class="bg-white text-red-600 px-8 py-3 rounded-2xl font-bold">
-
-Emergency
-
-</button>
-
-</div>
-
-</div>
 
 </div>
 
 <script>
 
-const hospitalData = {
+const hospitals = [
 
-"diabetic": {
-
-hospital: "Aaryadana Hospital",
-
-rating: "4.7",
-
-budget: "₹3000 - ₹8000",
-
-location: "Ballari",
-
-phone: "08392256789",
-
-treatment:
-"Diabetes Management & Sugar Control",
-
-details:
-"Includes sugar test, insulin monitoring, BP checkup, diet consultation and diabetic care."
-
-},
-
-"cancer": {
-
-hospital: "BHCC Hospital Ballari",
-
-rating: "4.8",
-
-budget: "₹50000 - ₹200000",
-
-location: "Ballari",
-
-phone: "08392278901",
-
-treatment:
-"Cancer Treatment & Chemotherapy",
-
-details:
-"Includes chemotherapy, radiation therapy, ICU support and cancer diagnosis."
-
-},
-
-"heart attack": {
-
-hospital: "Hrudayalaya Hospital",
-
-rating: "4.9",
-
-budget: "₹100000 - ₹300000",
-
-location: "Ballari",
-
-phone: "08392267890",
-
-treatment:
-"Heart Attack Emergency Care",
-
-details:
-"Includes ECG scan, angioplasty, ICU monitoring and emergency treatment."
-
-},
-
-"cardiac arrest": {
-
-hospital: "Hrudayalaya Hospital",
-
-rating: "4.9",
-
-budget: "₹150000 - ₹400000",
-
-location: "Ballari",
-
-phone: "08392267890",
-
-treatment:
-"Cardiac Arrest ICU Care",
-
-details:
-"Includes CPR support, ventilator support and emergency cardiac care."
-
-},
-
-"kidney": {
-
-hospital: "Ballari Lifeline Hospital",
-
-rating: "4.6",
-
-budget: "₹40000 - ₹100000",
-
-location: "Ballari",
-
-phone: "08392245678",
-
-treatment:
-"Kidney Stone Treatment",
-
-details:
-"Includes kidney scan, dialysis support and kidney stone removal."
-
-},
-
-"lungs": {
+{
 
 hospital: "BKS Hospital Ballari",
 
-rating: "4.5",
+treatment: "Lung Infection Treatment",
+
+keyword: "lungs",
 
 budget: "₹10000 - ₹50000",
+
+rating: "4.5",
 
 location: "Ballari",
 
 phone: "08392234567",
 
-treatment:
-"Lung Infection Treatment",
-
 details:
-"Includes oxygen support, respiratory therapy and lung infection care."
+"Treatment includes oxygen support, respiratory therapy and lung infection care."
 
 },
 
-"chronic disorders": {
+{
+
+hospital: "Ballari Lifeline Hospital",
+
+treatment: "Kidney Stone Treatment",
+
+keyword: "kidney",
+
+budget: "₹40000 - ₹100000",
+
+rating: "4.6",
+
+location: "Ballari",
+
+phone: "08392245678",
+
+details:
+"Treatment includes kidney scan, dialysis support and kidney stone removal."
+
+},
+
+{
 
 hospital: "Aaryadana Hospital",
 
-rating: "4.7",
+treatment: "Diabetes Management",
 
-budget: "₹15000 - ₹70000",
+keyword: "diabetic",
+
+budget: "₹3000 - ₹8000",
+
+rating: "4.7",
 
 location: "Ballari",
 
 phone: "08392256789",
 
-treatment:
-"Chronic Disease Management",
+details:
+"Includes sugar testing, insulin monitoring and diabetic management."
+
+},
+
+{
+
+hospital: "Hrudayalaya Hospital",
+
+treatment: "Heart Attack Emergency Care",
+
+keyword: "heart attack",
+
+budget: "₹100000 - ₹300000",
+
+rating: "4.9",
+
+location: "Ballari",
+
+phone: "08392267890",
 
 details:
-"Includes long term monitoring, medicine support and specialist consultation."
+"Includes ECG scan, ICU monitoring and emergency heart care."
+
+},
+
+{
+
+hospital: "BHCC Hospital Ballari",
+
+treatment: "Cancer Treatment",
+
+keyword: "cancer",
+
+budget: "₹50000 - ₹200000",
+
+rating: "4.8",
+
+location: "Ballari",
+
+phone: "08392278901",
+
+details:
+"Includes chemotherapy, radiation therapy and cancer diagnosis."
 
 }
 
-};
+];
 
-function searchTreatment(){
+function searchHospital(){
 
 const input =
 document.getElementById("searchInput")
@@ -262,11 +199,26 @@ document.getElementById("results");
 
 results.innerHTML = "";
 
-if(hospitalData[input]){
+const filtered =
+hospitals.filter(item =>
 
-const item = hospitalData[input];
+item.hospital.toLowerCase().includes(input)
 
-results.innerHTML = `
+||
+
+item.keyword.toLowerCase().includes(input)
+
+||
+
+item.treatment.toLowerCase().includes(input)
+
+);
+
+if(filtered.length > 0){
+
+filtered.forEach(item => {
+
+results.innerHTML += `
 
 <div class="bg-white p-8 rounded-3xl shadow-2xl">
 
@@ -304,7 +256,7 @@ ${item.hospital}
 
 </p>
 
-<p class="mt-4 text-gray-700 text-lg leading-8">
+<p class="mt-4 text-gray-700 leading-8">
 
 📄 ${item.details}
 
@@ -337,7 +289,7 @@ class="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl">
 </button>
 
 <button
-onclick="shareDetails()"
+onclick="shareDetails('${item.hospital}')"
 class="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-2xl">
 
 📤 Share
@@ -350,6 +302,8 @@ class="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-2xl">
 
 `;
 
+});
+
 }
 
 else{
@@ -358,22 +312,22 @@ results.innerHTML = `
 
 <div class="bg-white p-10 rounded-3xl shadow-2xl text-center w-full">
 
-<h1 class="text-3xl text-red-500 font-bold">
+<h1 class="text-4xl text-red-500 font-bold">
 
-❌ Treatment Not Found
+❌ No Results Found
 
 </h1>
 
 <p class="mt-5 text-lg">
 
-Try:
-diabetic,
-cancer,
+Try searching:
+BKS Hospital Ballari,
+BHCC Hospital Ballari,
+Hrudayalaya Hospital,
 kidney,
+cancer,
 lungs,
-heart attack,
-cardiac arrest,
-chronic disorders
+diabetic
 
 </p>
 
@@ -387,7 +341,8 @@ chronic disorders
 
 function callHospital(number){
 
-window.location.href = "tel:" + number;
+window.location.href =
+"tel:" + number;
 
 }
 
@@ -402,25 +357,15 @@ window.open(
 
 function bookAppointment(){
 
-alert("✅ Appointment Booked Successfully");
+alert("✅ Appointment Booked");
 
 }
 
-function shareDetails(){
+function shareDetails(hospital){
 
-alert("✅ Hospital details shared");
+navigator.clipboard.writeText(hospital);
 
-}
-
-function callAmbulance(){
-
-window.location.href = "tel:108";
-
-}
-
-function callEmergency(){
-
-window.location.href = "tel:102";
+alert("✅ Hospital Name Copied");
 
 }
 
@@ -429,11 +374,9 @@ function voiceSupport(){
 const speech =
 new SpeechSynthesisUtterance(
 
-"Welcome to Affordable Healthcare Finder. Search treatments like diabetic, cancer, kidney, lungs, heart attack and chronic disorders to view hospital budgets and treatment details."
+"Welcome to Affordable Healthcare Finder. Search hospitals or treatments to view healthcare details and budgets."
 
 );
-
-speech.lang = "en-US";
 
 window.speechSynthesis.speak(speech);
 
